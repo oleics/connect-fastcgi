@@ -250,6 +250,7 @@ module.exports = function fastcgi(newOptions) {
     }    
     
     return function(request, response, next) {
+        if(path.extname(request.url) !== '.php') return next();
         var script_dir = options.root;
         var script_file = url.parse(request.url).pathname;
         
